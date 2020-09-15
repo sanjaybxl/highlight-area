@@ -1,0 +1,22 @@
+<div class="container">
+    {{ form.value | json }}
+    <div class="col">
+        <div class="row">
+            <div class="col-md-3">
+                <p>Mouse at : {{ currentPosition.x }},{{currentPosition.y}}</p>
+            </div>
+
+            <div class="col-md-3">
+                <button (click)="clearShapes()" type="button" class="btn btn-light">Clear</button>
+            </div>
+        </div>
+        <div class="img-container">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                (mousedown)="onMouseDown($event)" (mouseup)="onMouseUp($event)" (mousemove)="onMouseMove($event)">
+                <ng-container *ngFor="let shape of getShapes()">
+                    <ng-template dynamic-svg [component]="shape"></ng-template>
+                </ng-container>
+            </svg>
+        </div>
+    </div>
+</div>
